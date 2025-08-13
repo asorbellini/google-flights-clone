@@ -1,0 +1,2 @@
+# GOOGLE FLIGHTS CLONE
+This project was developed as part of a technical test to demonstrate my skills in React. The goal is to showcase my ability to design, build, and structure a front-end application using best practices, clean code, and reusable components. It also highlights my understanding of state management, component lifecycle, and integration with APIs.
