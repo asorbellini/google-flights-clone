@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material"
+import { memo } from "react"
 
 const Hero = () => {
     return (
@@ -21,4 +22,4 @@ const Hero = () => {
     )
 }
 
-export default Hero
+export default memo(Hero)

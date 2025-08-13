@@ -1,4 +1,5 @@
 import { AppBar, Toolbar, Typography, IconButton, Box, Button } from "@mui/material"
+import { memo } from "react"
 import { Menu as MenuIcon, AccountCircle } from "@mui/icons-material"
 import FlightIcon from '@mui/icons-material/Flight';
 import HotelIcon from '@mui/icons-material/Hotel';
@@ -30,4 +31,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default memo(Header)
