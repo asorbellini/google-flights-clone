@@ -1,8 +1,7 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { Box, Paper, Grid, TextField, Autocomplete, Button, Typography, FormControl, InputLabel,  Select, MenuItem, Alert, CircularProgress, Chip} from '@mui/material';
 import { Flight, Search, SwapHoriz } from '@mui/icons-material';
 import { skyApi } from '../services/skyApi';
-import { searchAirportsMock } from '../services/mockData';
 
 const FlightSearch = ({ onSearch, loading = false }) => {
   const [formData, setFormData] = useState({
@@ -73,6 +72,8 @@ const FlightSearch = ({ onSearch, loading = false }) => {
       originEntityId: formData.origin.navigation.relevantFlightParams.entityId,
       destinationSkyId: formData.destination.navigation.relevantFlightParams.skyId,
       destinationEntityId: formData.destination.navigation.relevantFlightParams.entityId,
+      originName: formData.origin.presentation.title,
+      destinationName: formData.destination.presentation.title,
       date: formData.departureDate,
       returnDate: formData.tripType === 'roundTrip' ? formData.returnDate : undefined,
       adults: formData.adults,
@@ -125,8 +126,8 @@ const FlightSearch = ({ onSearch, loading = false }) => {
         <Grid item xs={12} md={5}>
           <Autocomplete
             options={airportOptions}
-            getOptionLabel={(option) => option.name || ''}
-            isOptionEqualToValue={(option, value) => option.navigation?.entityId === value.navigation?.entityId}
+            getOptionLabel={(option) => option.presentation?.title || ''}
+            isOptionEqualToValue={(option, value) => option.navigation?.entityId === value?.navigation?.entityId}
             onInputChange={(_, value) => searchAirports(value)}
             onChange={(_, value) => setFormData(prev => ({ ...prev, origin: value }))}
             loading={searchingAirports}
@@ -177,7 +178,7 @@ const FlightSearch = ({ onSearch, loading = false }) => {
           <Autocomplete
             options={airportOptions}
             getOptionLabel={(option) => option.presentation?.title || ''}
-            isOptionEqualToValue={(option, value) => option.navigation?.entityId === value.navigation?.entityId}
+            isOptionEqualToValue={(option, value) => option.navigation?.entityId === value?.navigation?.entityId}
             onInputChange={(_, value) => searchAirports(value)}
             onChange={(_, value) => setFormData(prev => ({ ...prev, destination: value }))}
             loading={searchingAirports}
@@ -332,7 +333,7 @@ const FlightSearch = ({ onSearch, loading = false }) => {
           <Grid item xs={12}>
             <Alert severity="info" sx={{ mt: 2 }}>
               <Typography variant="body2">
-                <strong>Resumen:</strong> {formData.origin?.name} → {formData.destination?.name} 
+                <strong>Resumen:</strong> {formData.origin?.presentation?.title} → {formData.destination?.presentation?.title} 
                 el {formData.departureDate}
                 {formData.tripType === 'roundTrip' && ` - Regreso: ${formData.returnDate}`}
                 {formData.adults > 0 && ` • ${formData.adults} adulto${formData.adults > 1 ? 's' : ''}`}

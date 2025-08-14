@@ -746,7 +746,7 @@ export const mockFlightResults = {
             }
         }
     },
-    searchParams: {
+    /* searchParams: {
         originSkyId: "LOND",
         originEntityId: "27544008", // LONDON
         destinationSkyId: "NYCA",
@@ -754,5 +754,5 @@ export const mockFlightResults = {
         date: "2025-08-15",
         adults: 1,
         currency: "USD"
-    }
+    } */
 };

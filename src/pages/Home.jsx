@@ -2,17 +2,24 @@ import { useState } from "react";
 import Header from "../components/Headers";
 import Hero from "../components/Hero";
 import FlightSearch from "../components/FlightSearch";
+import FlightResults from "../components/FlightResults";
 import {Box, Container, Typography, Alert, CircularProgress} from "@mui/material"
 import { skyApi } from "../services/skyApi";
 
 export default function Home() {
     const [flightResults, setFlightResults] = useState(null)
     const [isSearching, setIsSearching] = useState(false)
+    const [searchParams, setSearchParams] = useState(null);
     const [searchError, setSearchError] = useState(null)
+    const [originName, setOriginName] = useState('');
+    const [destinationName, setDestinationName] = useState('');
 
     const handleFlightSearch = async (searchParams) => {
         console.log('🔍 Busqueda iniciada con:', searchParams)
         setIsSearching(true)
+        setSearchParams(searchParams)
+        setOriginName(searchParams.originName || 'Origen');
+        setDestinationName(searchParams.destinationName || 'Destino');
         setSearchError(null)
         setFlightResults(null)
         
@@ -44,39 +51,16 @@ export default function Home() {
                     </Alert>
                 )}
 
-                {flightResults && (
-                    <Box sx={{ mt: 3 }}>
-                        <Typography variant="h6" gutterBottom>
-                            <strong>Resultados de búsqueda:</strong>
-                        </Typography>
-                        <Box sx={{ mb:2, p:2, bgcolor:'success.light', borderRadius:1}}>
-                            <Typography>
-                                Origen:{flightResults.searchParams?.originEntityId} |
-                                Destino:{flightResults.searchParams?.destinationEntityId} |
-                                Fecha salida: {flightResults.searchParams?.date} |
-                            </Typography>
-                            {flightResults.searchParams?.returnDate && (
-                                <Typography>
-                                        Fecha vuelta: {flightResults.searchParams?.returnDate}
-                                </Typography>
-                            )}
-                        </Box>
-                        <Typography variant="subtitle2" gutterBottom>
-                            Estructura de respuesta:
-                        </Typography>
-                        <Box sx={{ 
-                            bgcolor: '#f5f5f5', 
-                            p: 2, 
-                            borderRadius: 1,
-                            maxHeight: '400px',
-                            overflow: 'auto'
-                        }}>
-                            <pre style={{ margin: 0, fontSize: '12px' }}>
-                                {JSON.stringify(flightResults, null, 2)}
-                            </pre>
-                        </Box>
-                    </Box>
+                {searchParams && (
+                    <FlightResults
+                        results={flightResults}
+                        loading={isSearching}
+                        searchParams={searchParams}
+                        originName={originName}
+                        destinationName={destinationName}
+                    />
                 )}
+
                 {isSearching && (
                     <Box sx={{ mt: 3, textAlign: 'center' }}>
                         <CircularProgress size={40} />
