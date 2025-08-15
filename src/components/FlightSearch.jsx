@@ -57,6 +57,12 @@ const FlightSearch = ({ onSearch, loading = false }) => {
     return hasOrigin && hasDestination && hasDate && isValidReturn;
   }, [formData]);
 
+  // Fecha mínima (hoy)
+  const getMinDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
+
 
   const swapOriginDestination = () => {
     console.log('Estado actual:', {
@@ -120,15 +126,29 @@ const FlightSearch = ({ onSearch, loading = false }) => {
   };
 
   const validateDates = (departure, returnDate) => {
+    if (departure) {
+      const departureDate = new Date(departure);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      if (departureDate < today) {
+        setErrors(prev => ({ ...prev, departureDate: 'La fecha de salida no puede ser anterior a hoy' }));
+        return false;
+      } else {
+        setErrors(prev => ({ ...prev, departureDate: '' }));
+      }
+    }
+
     if (formData.tripType === 'roundTrip' && returnDate) {
       const dep = new Date(departure);
       const ret = new Date(returnDate);
       if (ret <= dep) {
         setErrors(prev => ({ ...prev, returnDate: 'La fecha de regreso debe ser posterior a la de salida' }));
         return false;
+      } else {
+        setErrors(prev => ({ ...prev, returnDate: '' }));
       }
     }
-    setErrors(prev => ({ ...prev, returnDate: '' }));
     return true;
   };
 
@@ -145,7 +165,17 @@ const FlightSearch = ({ onSearch, loading = false }) => {
           <Select
             value={formData.tripType}
             label="Tipo de viaje"
-            onChange={(e) => setFormData(prev => ({ ...prev, tripType: e.target.value }))}
+            onChange={(e) => {
+              const newTripType = e.target.value;
+              setFormData(prev => ({ 
+                ...prev, 
+                tripType: newTripType,
+                returnDate: newTripType === 'oneWay' ? '' : prev.returnDate
+              }));
+              if (newTripType === 'oneWay') {
+                setErrors(prev => ({ ...prev, returnDate: '' }));
+              }
+            }}
           >
             <MenuItem value="oneWay">Solo ida</MenuItem>
             <MenuItem value="roundTrip">Ida y vuelta</MenuItem>
@@ -299,12 +329,22 @@ const FlightSearch = ({ onSearch, loading = false }) => {
             value={formData.departureDate}
             onChange={(e) => {
               const newDate = e.target.value;
-              setFormData(prev => ({ ...prev, departureDate: newDate }));
+              setFormData(prev => ({ ...prev, departureDate: newDate }));              
+              if (formData.returnDate && new Date(newDate) >= new Date(formData.returnDate)) {
+                setFormData(prev => ({ ...prev, returnDate: '' }));
+                setErrors(prev => ({ ...prev, returnDate: 'Selecciona una nueva fecha de regreso' }));
+              }
+              
               validateDates(newDate, formData.returnDate);
             }}
             InputLabelProps={{ shrink: true }}
+            inputProps={{
+              min: getMinDate()
+            }}
             fullWidth
             required
+            error={!!errors.departureDate}
+            helperText={errors.departureDate || `Fecha mínima: ${getMinDate()}`}
           />
         </Grid>
 
@@ -320,10 +360,13 @@ const FlightSearch = ({ onSearch, loading = false }) => {
                 validateDates(formData.departureDate, newDate);
               }}
               InputLabelProps={{ shrink: true }}
+              inputProps={{
+                min: formData.departureDate || getMinDate()
+              }}
               fullWidth
               required
               error={!!errors.returnDate}
-              helperText={errors.returnDate}
+              helperText={errors.returnDate || (formData.departureDate ? `Fecha mínima: ${formData.departureDate}` : 'Selecciona primero la fecha de salida')}
             />
           </Grid>
         )}
