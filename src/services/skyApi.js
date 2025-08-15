@@ -4,10 +4,23 @@ import { mockFlightResults, searchAirportsMock } from "./mockData";
 export const skyApi = {
     async searchPlaces(query) {
         if (!query || query.length < 2) return []
-        // SIMULACIÓN:  solicitud con debounce a mockData
+        
+        // REAL: Solicitud a la API
+        /*
+        try {
+            console.log(`🔍 Búsqueda real en API para: "${query}"`);
+            const data = await apiClient.get('/api/v1/flights/searchAirport', {query})
+            const items = data?.data || []
+            console.log(`✅ Resultados de API: ${items.length} lugares encontrados`);
+            return items;
+        } catch (error) {
+            console.error('❌ Error en searchPlaces:', error);
+            return [];
+        }*/
+        
+        // SIMULACIÓN
         try {
             console.log(`🔍 Búsqueda simulada con debounce para: "${query}"`);
-            // SIMULACIÓN: Usando mockData 
             const results = searchAirportsMock(query);
             console.log(results)
             if (!results || !Array.isArray(results)) {
@@ -21,12 +34,7 @@ export const skyApi = {
         } catch (error) {
             console.error('❌ Error en searchPlaces:', error);
             return [];
-        }
-        
-        // REAL: Solicitud a la API
-        /* const data = await apiClient.get('/api/v1/flights/searchAirport',{query})
-        const items = data?.data || []
-        return items*/
+        } 
     },
 
     buildFlightParams(params){
@@ -49,17 +57,49 @@ export const skyApi = {
         return {...required, ...optional}
     },
 
-    
     // autodetect type trip flights
     async searchFlights(searchParams) {
         const params = this.buildFlightParams(searchParams)
-        // SIMULACIÓN: Respuesta de mock para vuelos
+        
+        // REAL: Solicitud a la API
+        /*try {
+            console.log('🚀 Búsqueda real de vuelos con parámetros:', params);
+            const results = await apiClient.get('/api/v1/flights/searchFlights', params);
+            console.log('✅ Resultados de API recibidos:', results);
+            if (!results?.data?.itineraries) {
+                console.warn('⚠️ La API no retornó itinerarios:', results);
+                return {
+                    status: false,
+                    message: 'No se encontraron vuelos disponibles',
+                    data: { itineraries: [] }
+                };
+            }
+            // Filtrar por tipo de viaje si es necesario
+            let filteredResults = { ...results };
+            
+            if (params.returnDate) {
+                // Vuelo de ida y vuelta: mostrar vuelos con 2 legs
+                filteredResults.data.itineraries = results.data.itineraries.filter(
+                    itinerary => itinerary.legs && itinerary.legs.length === 2
+                );
+            } else {
+                // Vuelo solo ida: mostrar vuelos con 1 leg
+                filteredResults.data.itineraries = results.data.itineraries.filter(
+                    itinerary => itinerary.legs && itinerary.legs.length === 1
+                );
+            }
+            
+            return filteredResults;
+        } catch (error) {
+            console.error('❌ Error en searchFlights:', error);
+            throw error;
+        }*/
+        
+        // SIMULACIÓN 
         console.log(' Búsqueda de vuelos simulada con parámetros:', params);
         console.log('✅ Resultados de vuelos simulados:', mockFlightResults);
-        // REAL: Solicitud a la API
-        // const results = apiClient.get('/api/v1/searchFlights', params)
         
-        let filteredResults = { ...mockFlightResults }; //{...results}
+        let filteredResults = { ...mockFlightResults };
     
         if (params.returnDate) {
             filteredResults.data.itineraries = mockFlightResults.data.itineraries.filter(
@@ -68,7 +108,6 @@ export const skyApi = {
             filteredResults.data.itineraries = mockFlightResults.data.itineraries.filter(
                 itinerary => itinerary.legs && itinerary.legs.length === 1)
         }
-        return filteredResults;
-        
+        return filteredResults; 
     },
 }

@@ -315,6 +315,261 @@ export const mockFlightResults = {
                                 }
                             }
                         ]
+                    },
+                    {
+                        id:"12712-2402221810--30598-0-13542-2402230600",
+                        origin:{
+                            id:"JFK",
+                            name:"New York John F. Kennedy",
+                            displayCode:"JFK",
+                            city:"New York",
+                            isHighlighted:false
+                        },
+                        destination:{
+                            id:"LGW",
+                            name:"London Gatwick",
+                            displayCode:"LGW",
+                            city:"London",
+                            isHighlighted:false
+                        },
+                        durationInMinutes:410,
+                        stopCount:0,
+                        isSmallestStops:false,
+                        departure:"2024-02-22T18:10:00",
+                        arrival:"2024-02-23T06:00:00",
+                        timeDeltaInDays:1,
+                        carriers:{
+                            marketing:[
+                                {
+                                    id:-30598,
+                                    logoUrl:"https://logos.skyscnr.com/images/airlines/favicon/I%29.png",
+                                    name:"Norse Atlantic Airways (UK)"
+                                }
+                            ],
+                            operationType:"fully_operated"
+                        },
+                        segments:[
+                            {
+                                id:"2402230600--30598",
+                                origin:{
+                                    flightPlaceId:"SWF",
+                                    displayCode:"SWF",
+                                    parent:{
+                                        flightPlaceId:"NYCA",
+                                        displayCode:"NYC",
+                                        name:"New York",
+                                        type:"City"
+                                    },
+                                    name:"New York John F. Kennedy",
+                                    type:"Airport"
+                                },
+                                destination:{
+                                    flightPlaceId:"SWF",
+                                    displayCode:"SWF",
+                                    parent:{
+                                        flightPlaceId:"SWF",
+                                        displayCode:"SWF",
+                                        name:"Stewart International",
+                                        type:"City"
+                                    },
+                                    name:"Stewart International",
+                                    type:"Airport"
+                                },
+                                departure:"2024-02-22T18:10:00",
+                                arrival:"2024-02-23T06:00:00",
+                                durationInMinutes:410,
+                                flightNumber:"702",
+                                marketingCarrier:{
+                                    id:-30598,
+                                    name:"Norse Atlantic Airways (UK)",
+                                    alternateId:"I)",
+                                    allianceId:0
+                                },
+                                operatingCarrier:{
+                                    id:-30598,
+                                    name:"Norse Atlantic Airways (UK)",
+                                    alternateId:"I)",
+                                    allianceId:0
+                                }
+                            }
+                        ]
+                    }
+                ],
+                isSelfTransfer:false,
+                isProtectedSelfTransfer:false,
+                farePolicy:{
+                    isChangeAllowed:false,
+                    isPartiallyChangeable:false,
+                    isCancellationAllowed:false,
+                    isPartiallyRefundable:false
+                },
+                tags:["cheapest","shortest"],
+                isMashUp:false,
+                hasFlexibleOptions:false,
+                score:0.998502
+            },
+            {
+                id:"13542-2402201235--30598-0-12712-2402201550|12712-2402221810--30598-0-13542-2402230600",
+                price:{
+                    raw:419.18,
+                    formatted:"$420"
+                },
+                legs:[
+                    {
+                        id:"13542-2402201235--30598-0-12712-2402201550",
+                        origin:{
+                            id:"LGW",
+                            name:"London Gatwick",
+                            displayCode:"LGW",
+                            city:"London",
+                            isHighlighted:false
+                        },
+                        destination:{
+                            id:"JFK",
+                            name:"New York John F. Kennedy",
+                            displayCode:"JFK",
+                            city:"New York",
+                            isHighlighted:false
+                        },
+                        durationInMinutes:495,
+                        stopCount:0,
+                        isSmallestStops:false,
+                        departure:"2024-02-20T12:35:00",
+                        arrival:"2024-02-20T15:50:00",
+                        timeDeltaInDays:0,
+                        carriers:{
+                            marketing:[
+                                {
+                                    id:-30598,
+                                    logoUrl:"https://logos.skyscnr.com/images/airlines/favicon/I%29.png",
+                                    name:"Norse Atlantic Airways (UK)"
+                                }
+                            ],
+                            operationType:"fully_operated"
+                        },
+                        segments:[
+                            {
+                                id:"13542-12712-2402201235-2402201550--30598",
+                                origin:{
+                                    flightPlaceId:"LGW",
+                                    displayCode:"LGW",
+                                    parent:{
+                                        flightPlaceId:"LOND",
+                                        displayCode:"LON",
+                                        name:"London",
+                                        type:"City"
+                                    },
+                                    name:"London Gatwick",
+                                    type:"Airport"
+                                },
+                                destination:{
+                                    flightPlaceId:"JFK",
+                                    displayCode:"JFK",
+                                    parent:{
+                                        flightPlaceId:"NYCA",
+                                        displayCode:"NYC",
+                                        name:"New York",
+                                        type:"City"
+                                    },
+                                    name:"New York John F. Kennedy",
+                                    type:"Airport"
+                                },
+                                departure:"2024-02-20T12:35:00",
+                                arrival:"2024-02-20T15:50:00",
+                                durationInMinutes:495,
+                                flightNumber:"701",
+                                marketingCarrier:{
+                                    id:-30598,
+                                    name:"Norse Atlantic Airways (UK)",
+                                    alternateId:"I)",
+                                    allianceId:0
+                                },
+                                operatingCarrier:{
+                                    id:-30598,
+                                    name:"Norse Atlantic Airways (UK)",
+                                    alternateId:"I)",
+                                    allianceId:0
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        id:"12712-2402221810--30598-0-13542-2402230600",
+                        origin:{
+                            id:"JFK",
+                            name:"New York John F. Kennedy",
+                            displayCode:"JFK",
+                            city:"New York",
+                            isHighlighted:false
+                        },
+                        destination:{
+                            id:"LGW",
+                            name:"London Gatwick",
+                            displayCode:"LGW",
+                            city:"London",
+                            isHighlighted:false
+                        },
+                        durationInMinutes:410,
+                        stopCount:0,
+                        isSmallestStops:false,
+                        departure:"2024-02-22T18:10:00",
+                        arrival:"2024-02-23T06:00:00",
+                        timeDeltaInDays:1,
+                        carriers:{
+                            marketing:[
+                                {
+                                    id:-30598,
+                                    logoUrl:"https://logos.skyscnr.com/images/airlines/favicon/I%29.png",
+                                    name:"Norse Atlantic Airways (UK)"
+                                }
+                            ],
+                            operationType:"fully_operated"
+                        },
+                        segments:[
+                            {
+                                id:"12712-13542-2402221810-2402230600--30598",
+                                origin:{
+                                    flightPlaceId:"JFK",
+                                    displayCode:"JFK",
+                                    parent:{
+                                        flightPlaceId:"NYCA",
+                                        displayCode:"NYC",
+                                        name:"New York",
+                                        type:"City"
+                                    },
+                                    name:"New York John F. Kennedy",
+                                    type:"Airport"
+                                },
+                                destination:{
+                                    flightPlaceId:"LGW",
+                                    displayCode:"LGW",
+                                    parent:{
+                                        flightPlaceId:"LOND",
+                                        displayCode:"LON",
+                                        name:"London",
+                                        type:"City"
+                                    },
+                                    name:"London Gatwick",
+                                    type:"Airport"
+                                },
+                                departure:"2024-02-22T18:10:00",
+                                arrival:"2024-02-23T06:00:00",
+                                durationInMinutes:410,
+                                flightNumber:"702",
+                                marketingCarrier:{
+                                    id:-30598,
+                                    name:"Norse Atlantic Airways (UK)",
+                                    alternateId:"I)",
+                                    allianceId:0
+                                },
+                                operatingCarrier:{
+                                    id:-30598,
+                                    name:"Norse Atlantic Airways (UK)",
+                                    alternateId:"I)",
+                                    allianceId:0
+                                }
+                            }
+                        ]
                     }
                 ],
                 isSelfTransfer:false,
@@ -508,7 +763,7 @@ export const mockFlightResults = {
                 score:0.998502
             },
             {
-                id:"13542-2402201235--30598-0-12712-2402201550|12712-2402221810--30598-0-13542-2402230600",
+                id:"13542-24201550|12712-2402221810--30598-0-13542-2402230600",
                 price:{
                     raw:419.18,
                     formatted:"$420"
@@ -577,84 +832,6 @@ export const mockFlightResults = {
                                 arrival:"2024-02-20T15:50:00",
                                 durationInMinutes:495,
                                 flightNumber:"701",
-                                marketingCarrier:{
-                                    id:-30598,
-                                    name:"Norse Atlantic Airways (UK)",
-                                    alternateId:"I)",
-                                    allianceId:0
-                                },
-                                operatingCarrier:{
-                                    id:-30598,
-                                    name:"Norse Atlantic Airways (UK)",
-                                    alternateId:"I)",
-                                    allianceId:0
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        id:"12712-2402221810--30598-0-13542-2402230600",
-                        origin:{
-                            id:"JFK",
-                            name:"New York John F. Kennedy",
-                            displayCode:"JFK",
-                            city:"New York",
-                            isHighlighted:false
-                        },
-                        destination:{
-                            id:"LGW",
-                            name:"London Gatwick",
-                            displayCode:"LGW",
-                            city:"London",
-                            isHighlighted:false
-                        },
-                        durationInMinutes:410,
-                        stopCount:0,
-                        isSmallestStops:false,
-                        departure:"2024-02-22T18:10:00",
-                        arrival:"2024-02-23T06:00:00",
-                        timeDeltaInDays:1,
-                        carriers:{
-                            marketing:[
-                                {
-                                    id:-30598,
-                                    logoUrl:"https://logos.skyscnr.com/images/airlines/favicon/I%29.png",
-                                    name:"Norse Atlantic Airways (UK)"
-                                }
-                            ],
-                            operationType:"fully_operated"
-                        },
-                        segments:[
-                            {
-                                id:"12712-13542-2402221810-2402230600--30598",
-                                origin:{
-                                    flightPlaceId:"JFK",
-                                    displayCode:"JFK",
-                                    parent:{
-                                        flightPlaceId:"NYCA",
-                                        displayCode:"NYC",
-                                        name:"New York",
-                                        type:"City"
-                                    },
-                                    name:"New York John F. Kennedy",
-                                    type:"Airport"
-                                },
-                                destination:{
-                                    flightPlaceId:"LGW",
-                                    displayCode:"LGW",
-                                    parent:{
-                                        flightPlaceId:"LOND",
-                                        displayCode:"LON",
-                                        name:"London",
-                                        type:"City"
-                                    },
-                                    name:"London Gatwick",
-                                    type:"Airport"
-                                },
-                                departure:"2024-02-22T18:10:00",
-                                arrival:"2024-02-23T06:00:00",
-                                durationInMinutes:410,
-                                flightNumber:"702",
                                 marketingCarrier:{
                                     id:-30598,
                                     name:"Norse Atlantic Airways (UK)",
@@ -746,13 +923,4 @@ export const mockFlightResults = {
             }
         }
     },
-    /* searchParams: {
-        originSkyId: "LOND",
-        originEntityId: "27544008", // LONDON
-        destinationSkyId: "NYCA",
-        destinationEntityId: "27537542", // NEW YORK
-        date: "2025-08-15",
-        adults: 1,
-        currency: "USD"
-    } */
 };
