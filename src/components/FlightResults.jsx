@@ -2,20 +2,10 @@
 import { Box, Paper, Typography, Grid, Card, CardContent, Chip, Divider, Alert, CircularProgress, useTheme, useMediaQuery} from '@mui/material';
 import { Flight, AccessTime, FlightTakeoff, FlightLand } from '@mui/icons-material';
 
-const FlightResults = ({ results, loading, searchParams, originName, destinationName }) => {
+const FlightResults = ({ results, searchParams, originName, destinationName }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isTablet = useMediaQuery(theme.breakpoints.down('md'));
-  if (loading) {
-    return (
-      <Box display="flex" justifyContent="center" alignItems="center" py={4}>
-        <CircularProgress size={isMobile ? 40 : 60} />
-        <Typography variant={isMobile ? "body1" : "h6"} ml={2}>
-          Buscando vuelos...
-        </Typography>
-      </Box>
-    );
-  }
 
   if (!results || !results.data || !results.data.itineraries) {
     return (

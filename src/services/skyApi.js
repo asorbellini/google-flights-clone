@@ -6,20 +6,18 @@ export const skyApi = {
         if (!query || query.length < 2) return []
         
         // REAL: Solicitud a la API
-        /*
         try {
             console.log(`🔍 Búsqueda real en API para: "${query}"`);
             const data = await apiClient.get('/api/v1/flights/searchAirport', {query})
             const items = data?.data || []
-            console.log(`✅ Resultados de API: ${items.length} lugares encontrados`);
             return items;
         } catch (error) {
             console.error('❌ Error en searchPlaces:', error);
             return [];
-        }*/
+        }
         
         // SIMULACIÓN
-        try {
+        /* try {
             console.log(`🔍 Búsqueda simulada con debounce para: "${query}"`);
             const results = searchAirportsMock(query);
             console.log(results)
@@ -34,7 +32,7 @@ export const skyApi = {
         } catch (error) {
             console.error('❌ Error en searchPlaces:', error);
             return [];
-        } 
+        } */
     },
 
     buildFlightParams(params){
@@ -62,10 +60,9 @@ export const skyApi = {
         const params = this.buildFlightParams(searchParams)
         
         // REAL: Solicitud a la API
-        /*try {
+        try {
             console.log('🚀 Búsqueda real de vuelos con parámetros:', params);
             const results = await apiClient.get('/api/v1/flights/searchFlights', params);
-            console.log('✅ Resultados de API recibidos:', results);
             if (!results?.data?.itineraries) {
                 console.warn('⚠️ La API no retornó itinerarios:', results);
                 return {
@@ -93,10 +90,10 @@ export const skyApi = {
         } catch (error) {
             console.error('❌ Error en searchFlights:', error);
             throw error;
-        }*/
+        }
         
         // SIMULACIÓN 
-        console.log(' Búsqueda de vuelos simulada con parámetros:', params);
+        /*console.log(' Búsqueda de vuelos simulada con parámetros:', params);
         console.log('✅ Resultados de vuelos simulados:', mockFlightResults);
         
         let filteredResults = { ...mockFlightResults };
@@ -108,6 +105,6 @@ export const skyApi = {
             filteredResults.data.itineraries = mockFlightResults.data.itineraries.filter(
                 itinerary => itinerary.legs && itinerary.legs.length === 1)
         }
-        return filteredResults; 
+        return filteredResults; */
     },
 }
